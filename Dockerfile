@@ -7,4 +7,4 @@ COPY . /app/
 
 RUN go build ./...
 
-CMD ["/app/main"]
+CMD ["/app/tagspector"]
