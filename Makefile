@@ -1,10 +1,13 @@
-.PHONY: run build docker-run docker-shell docker-build
+.PHONY: build fmt test docker-run docker-shell docker-build
 
 build:
 	go build -o ./bin/tagspector ./cmd/tagspector
 
 fmt:
 	go fmt ./...
+
+test:
+	go test ./...
 
 docker-run: docker-build
 	docker run --rm go/tagspector
