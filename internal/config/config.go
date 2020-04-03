@@ -9,7 +9,7 @@ type Config struct {
 }
 
 type Option struct {
-	key string
+	key  string
 	help string
 }
 
@@ -59,7 +59,7 @@ func parseArgs(args []string) map[string]string {
 	parsed := make(map[string]string)
 
 	for _, arg := range args {
-		if strings.HasPrefix (arg, "--") {
+		if strings.HasPrefix(arg, "--") {
 			lastArg = arg
 		} else {
 			parsed[lastArg] = arg
@@ -80,7 +80,7 @@ func parseEnviron(environ []string) map[string]string {
 	return parsed
 }
 
-func parseEnvironItem(item string) (string, string){
+func parseEnvironItem(item string) (string, string) {
 	s := strings.Split(item, "=")
 	return s[0], s[1]
 }

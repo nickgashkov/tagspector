@@ -12,7 +12,7 @@ import (
 func True(t testing.TB, condition bool, msg string) {
 	if !condition {
 		_, file, line, _ := runtime.Caller(1)
-		printFailDetails()
+		printErrorHeader()
 		printErrorSummary(file, line, msg)
 		t.FailNow()
 	}
@@ -21,7 +21,7 @@ func True(t testing.TB, condition bool, msg string) {
 func Ok(t testing.TB, err error) {
 	if err != nil {
 		_, file, line, _ := runtime.Caller(1)
-		printFailDetails()
+		printErrorHeader()
 		printErrorSummary(file, line, "unexpected error")
 		printErrorDetails("err.Error()", err.Error())
 		t.FailNow()
@@ -31,7 +31,7 @@ func Ok(t testing.TB, err error) {
 func Equal(t testing.TB, exp, act interface{}) {
 	if !reflect.DeepEqual(exp, act) {
 		_, file, line, _ := runtime.Caller(1)
-		printFailDetails()
+		printErrorHeader()
 		printErrorSummary(file, line, "unexpected value")
 		printErrorDetails("exp", exp)
 		printErrorDetails("act", act)
@@ -42,7 +42,7 @@ func Equal(t testing.TB, exp, act interface{}) {
 const spaces = "    "
 const newline = "\n"
 
-func printFailDetails() {
+func printErrorHeader() {
 	fmt.Println(newline + newline + "--- FAIL DETAILS:")
 }
 
