@@ -2,6 +2,10 @@
 
 Tagspector introspects your source code for the codetags.
 
+[![codecov](https://codecov.io/gh/nickgashkov/tagspector/branch/master/graph/badge.svg)](https://codecov.io/gh/nickgashkov/tagspector) 
+[![Build Status](https://github.com/nickgashkov/tagspector/workflows/build/badge.svg)](https://github.com/nickgashkov/tagspector/workflows/build)
+
+
 ## Features backlog
 
 - `tagspectord` — simple HTTP server with an ability to introspect source code itself or path on the host machine.
