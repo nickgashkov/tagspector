@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"github.com/nickgashkov/tagspector/internal/cli"
 	"os"
 )
 
@@ -12,5 +13,5 @@ func main() {
 	)
 
 	flag.Parse()
-	os.Exit(cli(os.Stdout, os.Stdin, flag.Args(), *codetags))
+	os.Exit(cli.Cli(os.Stdout, os.Stdin, flag.Args(), *codetags))
 }
