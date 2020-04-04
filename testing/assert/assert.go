@@ -28,13 +28,13 @@ func Ok(t testing.TB, err error) {
 	}
 }
 
-func Equal(t testing.TB, exp, act interface{}) {
-	if !reflect.DeepEqual(exp, act) {
+func Equal(t testing.TB, act, exp interface{}) {
+	if !reflect.DeepEqual(act, exp) {
 		_, file, line, _ := runtime.Caller(1)
 		printErrorHeader()
 		printErrorSummary(file, line, "unexpected value")
-		printErrorDetails("exp", exp)
 		printErrorDetails("act", act)
+		printErrorDetails("exp", exp)
 		t.FailNow()
 	}
 }
