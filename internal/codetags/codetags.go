@@ -6,14 +6,24 @@ import (
 	"strings"
 )
 
-func Parse(reader io.Reader, codetags []string) []string {
+func Parse(readers []io.Reader, codetags []string) []string {
+	var parsed = make([]string, 0)
+
+	for _, reader := range readers {
+		parsed = append(parsed, parseIo(reader, codetags)...)
+	}
+
+	return parsed
+}
+
+func parseIo(reader io.Reader, codetags []string) []string {
 	var parsed = make([]string, 0)
 	var scanner = bufio.NewScanner(reader)
 
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		if parsedLn := parseln(line, codetags); parsedLn != "" {
+		if parsedLn := parseLn(line, codetags); parsedLn != "" {
 			parsed = append(parsed, parsedLn)
 		}
 	}
@@ -21,7 +31,7 @@ func Parse(reader io.Reader, codetags []string) []string {
 	return parsed
 }
 
-func parseln(s string, codetags []string) string {
+func parseLn(s string, codetags []string) string {
 	for _, codetag := range codetags {
 		if strings.Contains(s, codetag) {
 			return s

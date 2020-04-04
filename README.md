@@ -11,3 +11,5 @@ Tagspector introspects your source code for the codetags.
 - `cat code.py | tagspector -` — Tagspector gets the code from the `stdin`
 - Language-specific codetags introspection — `x = "TODO"` in Python isn't a code tag, but `x = ""  # TODO` is
 - Language guessing
+- Add filepath and line numbers for codetags output
+- Support multiline codetags
