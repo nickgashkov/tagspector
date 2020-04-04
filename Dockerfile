@@ -5,6 +5,6 @@ ENV CGO_ENABLED="0"
 WORKDIR /app/
 COPY . /app/
 
-RUN go build -o ./bin/tagspector ./cmd/tagspector
+RUN go build -o ./bin ./cmd/...
 
 CMD ["/app/bin/tagspector"]
