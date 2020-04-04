@@ -13,6 +13,12 @@ import (
 func main() {
 	var readers []io.Reader
 
+	targetCodetags := flag.String(
+		"codetags",
+		"TODO,FIXME",
+		"comma-separated codetags to search for",
+	)
+
 	flag.Parse()
 
 	if flag.NArg() != 1 {
@@ -20,11 +26,13 @@ func main() {
 		os.Exit(2)
 	}
 
+	targetCodetagsSlice := strings.Split(*targetCodetags, ",")
+
 	if slices.StringsEqual(flag.Args(), []string{"-"}) {
 		readers = append(readers, os.Stdin)
 	}
 
-	parsed := codetags.Parse(readers, []string{"TODO"})
+	parsed := codetags.Parse(readers, targetCodetagsSlice)
 	parsedString := strings.Join(parsed, "\n")
 
 	fmt.Println(parsedString)
