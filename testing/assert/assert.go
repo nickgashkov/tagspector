@@ -2,7 +2,7 @@ package assert
 
 import (
 	"fmt"
-	"github.com/nickgashkov/tagspector/internal/ansi"
+	"github.com/nickgashkov/tagspector/testing/ansi"
 	"path/filepath"
 	"reflect"
 	"runtime"
