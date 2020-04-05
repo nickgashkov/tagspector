@@ -1,7 +1,7 @@
 .PHONY: build fmt test docker-run docker-shell docker-build
 
 build:
-	go build -o ./bin/tagspector ./cmd/tagspector
+	./scripts/build.sh
 
 fmt:
 	go fmt ./...

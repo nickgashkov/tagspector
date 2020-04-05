@@ -3,6 +3,7 @@ name: build
 on:
   push:
     branches: [ master ]
+    tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ master ]
 
@@ -31,10 +32,18 @@ jobs:
         run: test -z "$(gofmt -l .)"
 
       - name: Build
-        run: go build -v ./cmd/...
+        run: ./scripts/build.sh
 
       - name: Test
         run: go test -race -v -coverprofile=coverage.txt -covermode=atomic ./...
 
       - name: Check coverage
         run: bash <(curl -s https://codecov.io/bash)
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: '**/bin/*'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
