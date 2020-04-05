@@ -39,6 +39,15 @@ func Equal(t testing.TB, act, exp interface{}) {
 	}
 }
 
+func Panic(t testing.TB) {
+	if r := recover(); r == nil {
+		_, file, line, _ := runtime.Caller(1)
+		printErrorHeader()
+		printErrorSummary(file, line, "expected panic")
+		t.FailNow()
+	}
+}
+
 const spaces = "    "
 const newline = "\n"
 

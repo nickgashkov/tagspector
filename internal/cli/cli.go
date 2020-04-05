@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/nickgashkov/tagspector/internal/codetags"
 	"io"
+	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -52,7 +54,24 @@ func getReaders(input io.Reader, pathname string) []io.Reader {
 		return []io.Reader{input}
 	}
 
-	return []io.Reader{}
+	var readers []io.Reader
+	matches, err := filepath.Glob(pathname)
+
+	if err != nil {
+		panic(err)
+	}
+
+	for _, match := range matches {
+		f, err := os.Open(match)
+
+		if err != nil {
+			panic(err)
+		}
+
+		readers = append(readers, f)
+	}
+
+	return readers
 }
 
 func maybeComplain(output io.Writer, messageCandidates ...string) (complained bool) {
