@@ -58,6 +58,7 @@ func getReaders(input io.Reader, pathname string) []io.Reader {
 	matches, err := filepath.Glob(pathname)
 
 	if err != nil {
+		// TODO: Pass `err` to the caller instead of `panic`.
 		panic(err)
 	}
 
@@ -65,6 +66,7 @@ func getReaders(input io.Reader, pathname string) []io.Reader {
 		f, err := os.Open(match)
 
 		if err != nil {
+			// TODO: Log `err` instead of `panic`.
 			panic(err)
 		}
 
